@@ -11,7 +11,7 @@ from pyrogram.errors import (
 )
 
 from config import OWNER_ID
-from Bad.Database.data import (
+from Bad.Helper.data import (
     HACK_TEXT,
     HACK_MODS,
     BAD_MODS,
