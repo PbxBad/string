@@ -52,7 +52,7 @@ async def hack_callback(client: Client, query: CallbackQuery):
     try:
         await query.message.edit_text(
             text=HACK_TEXT,
-            reply_markup=ALPHA_MODS,
+            reply_markup=BAD_MODS,
         )
         await query.answer()
 
