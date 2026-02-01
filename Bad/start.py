@@ -80,7 +80,7 @@ async def start_handler(bot: Client, msg: Message):
     await bot.send_photo(
         chat_id=msg.chat.id,
         photo="https://files.catbox.moe/ookphv.jpg",
-        has_spoiler=True
+        has_spoiler=True,
         caption=caption,
         reply_markup=keyboard,
     )
