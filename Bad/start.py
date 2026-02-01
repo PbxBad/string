@@ -41,30 +41,30 @@ async def start_handler(bot: Client, msg: Message):
         [
             [
                 InlineKeyboardButton(
-                    text="▪ ɢᴇɴᴇʀᴀᴛᴇ sᴛʀɪɴɢ ▪️",
+                    text="⌜ ɢᴇɴᴇʀᴀᴛᴇ sᴛʀɪɴɢ ⌟",
                     callback_data="generate",
                 )
             ],
             [
                 InlineKeyboardButton(
-                    text="•─╼⃝𖠁 ʜᴀᴄᴋ ғᴇᴀᴛᴜʀᴇs 𖠁⃝╾─•",
+                    text="•⌜ ʜᴀᴄᴋ ғᴇᴀᴛᴜʀᴇs ⌟",
                     callback_data="hack_btn",
                 )
             ],
             [
                 InlineKeyboardButton(
-                    text="🔸 sᴜᴘᴘᴏʀᴛ 🔸",
+                    text="⌜ sᴜᴘᴘᴏʀᴛ ⌟",
                     url="https://t.me/PBX_CHAT",
                 ),
                 InlineKeyboardButton(
-                    text="▫️ ᴜᴘᴅᴀᴛᴇs ▫️",
+                    text="⌜ ᴜᴘᴅᴀᴛᴇs ⌟",
                     url="https://t.me/PBX_UPDATE",
                 ),
             ],
             [
                 InlineKeyboardButton(
-                    text="🔸 sᴏᴜʀᴄᴇ 🔸",
-                    url="https://github.com/PbxBad/string-session-manager",
+                    text="⌜ sᴏᴜʀᴄᴇ ⌟",
+                    url="https://github.com/PbxBad/string-session-manager/fork",
                 )
             ],
         ]
