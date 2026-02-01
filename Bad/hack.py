@@ -86,36 +86,36 @@ async def back_callback(client: Client, query: CallbackQuery):
 
         pm_buttons = InlineKeyboardMarkup(
             [
-                [
-                    InlineKeyboardButton(
-                        text="▪ ɢᴇɴᴇʀᴀᴛᴇ sᴛʀɪɴɢ ▪️",
-                        callback_data="generate",
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                        text="•─╼⃝𖠁 ʜᴀᴄᴋ ғᴇᴀᴛᴜʀᴇs 𖠁⃝╾─•",
-                        callback_data="hack_btn",
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                        text="🔸 sᴜᴘᴘᴏʀᴛ 🔸",
-                        url="https://t.me/PBX_CHAT",
-                    ),
-                    InlineKeyboardButton(
-                        text="▫️ ᴜᴘᴅᴀᴛᴇs ▫️",
-                        url="https://t.me/PBX_UPDATE",
-                    ),
-                ],
-                [
-                    InlineKeyboardButton(
-                        text="🔸 sᴏᴜʀᴄᴇ 🔸",
-                        url="https://github.com/badmunda/session",
-                    )
-                ],
-            ]
-        )
+            [
+                InlineKeyboardButton(
+                    text="⌜ ɢᴇɴᴇʀᴀᴛᴇ sᴛʀɪɴɢ ⌟",
+                    callback_data="generate",
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="⌜ ʜᴀᴄᴋ ғᴇᴀᴛᴜʀᴇs ⌟",
+                    callback_data="hack_btn",
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="⌜ sᴜᴘᴘᴏʀᴛ ⌟",
+                    url="https://t.me/PBX_CHAT",
+                ),
+                InlineKeyboardButton(
+                    text="⌜ ᴜᴘᴅᴀᴛᴇs ⌟",
+                    url="https://t.me/PBX_UPDATE",
+                ),
+            ],
+            [
+                InlineKeyboardButton(
+                    text="⌜ sᴏᴜʀᴄᴇ ⌟",
+                    url="https://github.com/PbxBad/string-session-manager/fork",
+                )
+            ],
+        ]
+    )
 
         await query.message.edit_text(
             text=pm_text,
