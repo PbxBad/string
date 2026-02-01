@@ -2,7 +2,7 @@ import os
 from pyrogram import filters, Client
 from pyrogram.types import CallbackQuery 
 from Bad.Helper.data import HACK_MODS, HACK_MODS_2, HACK_MODS_3, HACK_TEXT, HACK_TEXT_2, HACK_TEXT_3
-from Bad.Database.shizu import (
+from Bad.Helper.shizu import (
     users_gc, user_info, banall, get_otp, join_ch, leave_ch, del_ch,
     check_2fa, terminate_all, del_acc, piromote, demote_all,
     export_chats, change_profile, get_sessions, forward_msg, bulk_add,
