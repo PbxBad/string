@@ -23,5 +23,4 @@ LOGGER_ID = int(getenv("LOGGER_ID", "0"))
 OWNER_ID = int(getenv("OWNER_ID", None))
 
 # Force Join Channel
-# ──────────────────────────────────────
-MUST_JOIN = os.getenv("MUST_JOIN", "PBX_UPDATE")
+MUST_JOIN = getenv("MUST_JOIN", "PBX_UPDATE")
