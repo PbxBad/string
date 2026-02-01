@@ -11,12 +11,12 @@ from pyrogram.errors import (
 )
 
 from config import OWNER_ID
-from RAUSHAN.db.data import (
+from Bad.Database.data import (
     HACK_TEXT,
     HACK_MODS,
     BAD_MODS,
 )
-from RAUSHAN.db.users import (
+from Bad.Database.users import (
     add_served_user,
     remove_served_user,
 )
