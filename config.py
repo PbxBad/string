@@ -24,4 +24,4 @@ OWNER_ID = int(getenv("OWNER_ID", None))
 
 # Force Join Channel
 # ──────────────────────────────────────
-MUST_JOIN = os.getenv("MUST_JOIN", "").replace("@", "")
+MUST_JOIN = os.getenv("MUST_JOIN", "PBX_UPDATE")
