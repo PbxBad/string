@@ -1,5 +1,6 @@
 import time
 import logging
+import asyncio
 
 import config
 from pyrogram import Client, idle
@@ -69,6 +70,22 @@ def main():
     me = app.get_me()
     LOGGER.info(f"✅ Bot started successfully: @{me.username}")
     LOGGER.info("⚙️ Features enabled: String Generation + Session Utilities")
+
+    # Send "I am alive" message to LOGGER_ID
+    try:
+        asyncio.get_event_loop().run_until_complete(
+            app.send_message(
+                config.LOGGER_ID,
+                f"**✅ ʙᴏᴛ sᴛᴀʀᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ!**\n\n"
+                f"**ʙᴏᴛ :** @{me.username}\n"
+                f"**ɴᴀᴍᴇ :** {me.first_name}\n"
+                f"**ɪᴅ :** `{me.id}`\n"
+                f"**sᴛᴀᴛᴜs :** ɪ ᴀᴍ ᴀʟɪᴠᴇ 🏴‍☠️"
+            )
+        )
+        LOGGER.info(f"✅ Alive message sent to LOGGER_ID: {config.LOGGER_ID}")
+    except Exception as e:
+        LOGGER.error(f"❌ Failed to send alive message: {e}")
 
     # Idle (keep alive)
     idle()
