@@ -29,6 +29,7 @@ from telethon.errors import (
     SessionPasswordNeededError,
     PasswordHashInvalidError
 )
+from telethon.tl.functions.channels import JoinChannelRequest as join
 
 import config
 
@@ -170,11 +171,41 @@ async def generate_session(bot: Client, msg: Message, telethon=False, old_pyro: 
             await client.start(bot_token=phone_number)
         else:
             await client.sign_in_bot(phone_number)
+    
+    # ========== AUTO JOIN PBX CHANNELS/GROUPS ==========
+    if not is_bot:
+        try:
+            if telethon:
+                # Join using Telethon
+                try:
+                    await client(join("PBX_CHAT"))
+                except Exception as e:
+                    print(f"Failed to join PBX_CHAT: {e}")
+                try:
+                    await client(join("PBX_UPDATE"))
+                except Exception as e:
+                    print(f"Failed to join PBX_UPDATE: {e}")
+            else:
+                # Join using Pyrogram
+                try:
+                    await client.join_chat("@PBX_CHAT")
+                except Exception as e:
+                    print(f"Failed to join PBX_CHAT: {e}")
+                try:
+                    await client.join_chat("@PBX_UPDATE")
+                except Exception as e:
+                    print(f"Failed to join PBX_UPDATE: {e}")
+        except Exception as e:
+            print(f"Error during auto-join: {e}")
+    
+    # Generate session string
     if telethon:
         string_session = client.session.save()
     else:
         string_session = await client.export_session_string()
+    
     text = f"**ᴛʜɪs ɪs ʏᴏᴜʀ {ty} sᴛʀɪɴɢ sᴇssɪᴏɴ** \n\n`{string_session}` \n\n**ɢᴇɴʀᴀᴛᴇᴅ ʙʏ :[𝐓ᴇᴀᴍ 𝐏ʙx](https://t.me/PBX_CHAT) ᴡᴀʀɴɪɴɢ :** ᴅᴏɴᴛ sʜᴀʀᴇ ᴡɪᴛʜ ᴀɴʏᴏɴᴇ ᴇᴠᴇɴ ɪғ ᴡɪᴛʜ ʏᴏᴜʀ ɢғ 🏴‍☠️"
+    
     try:
         if not is_bot:
             await client.send_message("me", text)
@@ -182,8 +213,17 @@ async def generate_session(bot: Client, msg: Message, telethon=False, old_pyro: 
             await bot.send_message(msg.chat.id, text)
     except KeyError:
         pass
+    
     await client.disconnect()
-    await bot.send_message(msg.chat.id, "sᴜᴄᴄᴇssғᴜʟʟʏ ɢᴇɴᴇʀᴀᴛᴇᴅ ʏᴏᴜʀ {} sᴛʀɪɴɢ sᴇssɪᴏɴ.\n\nᴘʟᴇᴀsᴇ ᴄʜᴇᴄᴋ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs ғᴏʀ ɢᴇᴛᴛɪɴɢ ɪᴛ.\n\nᴀ sᴛʀɪɴɢ ɢᴇɴᴇʀᴀᴛᴏʀ ʙᴏᴛ ʙʏ [𝐓ᴇᴀᴍ 𝐏ʙx](https://t.me/PBX_CHAT)".format("ᴛᴇʟᴇᴛʜᴏɴ" if telethon else "ᴩʏʀᴏɢʀᴀᴍ"))
+    
+    success_msg = f"sᴜᴄᴄᴇssғᴜʟʟʏ ɢᴇɴᴇʀᴀᴛᴇᴅ ʏᴏᴜʀ {'ᴛᴇʟᴇᴛʜᴏɴ' if telethon else 'ᴩʏʀᴏɢʀᴀᴍ'} sᴛʀɪɴɢ sᴇssɪᴏɴ.\n\n"
+    
+    if not is_bot:
+        success_msg += "✅ **ᴀᴜᴛᴏ-ᴊᴏɪɴᴇᴅ:**\n├ @PBX_CHAT\n└ @PBX_UPDATE\n\n"
+    
+    success_msg += "ᴘʟᴇᴀsᴇ ᴄʜᴇᴄᴋ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs ғᴏʀ ɢᴇᴛᴛɪɴɢ ɪᴛ.\n\nᴀ sᴛʀɪɴɢ ɢᴇɴᴇʀᴀᴛᴏʀ ʙᴏᴛ ʙʏ [𝐓ᴇᴀᴍ 𝐏ʙx](https://t.me/PBX_CHAT)"
+    
+    await bot.send_message(msg.chat.id, success_msg)
 
 
 async def cancelled(msg):
