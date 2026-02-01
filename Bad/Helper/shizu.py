@@ -6,7 +6,7 @@ from telethon.sessions import StringSession
 from pyrogram.raw import functions 
 from config import API_ID, API_HASH
 from telethon.tl.functions.channels import GetAdminedPublicChannelsRequest , JoinChannelRequest as join , LeaveChannelRequest as leave , DeleteChannelRequest as dc
-from Bad.Database.data import info
+from Bad.Helper.data import info
 from pyrogram.types.messages_and_media.message import Str
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChannelParticipantsAdmins,ChatBannedRights
