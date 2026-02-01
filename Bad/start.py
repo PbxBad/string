@@ -47,7 +47,7 @@ async def start_handler(bot: Client, msg: Message):
             ],
             [
                 InlineKeyboardButton(
-                    text="•⌜ ʜᴀᴄᴋ ғᴇᴀᴛᴜʀᴇs ⌟",
+                    text="⌜ ʜᴀᴄᴋ ғᴇᴀᴛᴜʀᴇs ⌟",
                     callback_data="hack_btn",
                 )
             ],
