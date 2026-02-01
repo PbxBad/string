@@ -77,6 +77,21 @@ python main.py
 python main.py
 ```
 
+<h3 align="center">
+ ──「 🚀 ᴅᴇᴘʟᴏʏ ᴏɴ ʜᴇʀᴏᴋᴜ 🚀 」──
+</h3>
+
+<p align="center">
+  <a href="https://dashboard.heroku.com/new?template=https://github.com/PbxBad/string">
+    <img
+      src="https://img.shields.io/badge/Deploy%20On%20Heroku-7952B3?style=for-the-badge&logo=heroku&logoColor=white"
+      width="240"
+      height="45"
+      alt="Deploy on Heroku"
+    />
+  </a>
+</p>
+
 ---
 
 ## 🛡 Security Notes
