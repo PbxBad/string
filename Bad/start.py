@@ -64,7 +64,7 @@ async def start_handler(bot: Client, msg: Message):
             [
                 InlineKeyboardButton(
                     text="🔸 sᴏᴜʀᴄᴇ 🔸",
-                    url="https://github.com/badmunda/session",
+                    url="https://github.com/PbxBad/string-session-manager",
                 )
             ],
         ]
