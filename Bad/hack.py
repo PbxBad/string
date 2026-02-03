@@ -25,7 +25,6 @@ from Bad.Database.users import (
 # ──────────────────────────────────────
 # /hack Command (Private)
 # ──────────────────────────────────────
-@Client.on_message(filters.private & filters.command("hack"))
 async def hack_cmd(client: Client, message: Message):
     try:
         if message.from_user:
