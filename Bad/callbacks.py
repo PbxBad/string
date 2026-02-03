@@ -142,12 +142,14 @@ async def z_handler(client, query):
     await z_callback(client, query)
 
 # ========== STRING GENERATION CALLBACKS ==========
-ERROR_MESSAGE = """ɪғ ʏᴏᴜ ᴀʀᴇ ɢᴇᴛᴛɪɴɢ ᴇʀʀᴏʀ!
-ʏᴏᴜ ʜᴀᴠᴇ ᴅᴏɴᴇ sᴏᴍᴇ ᴍɪsᴛᴀᴋᴇ ᴡʜɪʟᴇ ɢᴇɴᴇʀᴀᴛɪɴɢ.
-ɢɪᴠᴇɴ ᴡʀᴏɴɢ ᴅᴀᴛᴀ ᴏʀ ᴇʟsᴇ.
-ᴛʀʏ ᴀɢᴀɪɴ ɪғ ʏᴏᴜ ᴄᴀɴ.
-ᴏʀ ɪғ ʏᴏᴜ ʜᴀᴠᴇ ғɪʟʟᴇᴅ ᴛʜɪɴɢs ᴄᴏʀʀᴇᴄᴛʟʏ ʙᴜᴛ ɢᴇᴛᴛɪɴɢ ᴇʀʀᴏʀ,
-ᴛʜᴇɴ ғᴏʀᴡᴀʀᴅ ᴇʀʀᴏʀ ᴍsɢ ᴛᴏ [ʙᴀᴅ](https://t.me/BadMundaXD) !"""
+ERROR_MESSAGE = """☞︎︎︎ **ɪғ ʏᴏᴜ ᴀʀᴇ ɢᴇᴛᴛɪɴɢ ᴇʀʀᴏʀ!**
+
+» ʏᴏᴜ ʜᴀᴠᴇ ᴅᴏɴᴇ sᴏᴍᴇ ᴍɪsᴛᴀᴋᴇ ᴡʜɪʟᴇ ɢᴇɴᴇʀᴀᴛɪɴɢ.
+» ɢɪᴠᴇɴ ᴡʀᴏɴɢ ᴅᴀᴛᴀ ᴏʀ ᴇʟsᴇ.
+
+» ᴛʀʏ ᴀɢᴀɪɴ ɪғ ʏᴏᴜ ᴄᴀɴ.
+» ᴏʀ ɪғ ʏᴏᴜ ʜᴀᴠᴇ ғɪʟʟᴇᴅ ᴛʜɪɴɢs ᴄᴏʀʀᴇᴄᴛʟʏ ʙᴜᴛ ɢᴇᴛᴛɪɴɢ ᴇʀʀᴏʀ,
+» ᴛʜᴇɴ ғᴏʀᴡᴀʀᴅ ᴇʀʀᴏʀ ᴍsɢ ᴛᴏ @PBX_CHAT !"""
 
 @Client.on_callback_query(filters.regex(pattern=r"^(generate|pyrogram|pyrogram_bot|telethon_bot|telethon)$"))
 async def string_gen_callbacks(bot: Client, callback_query: CallbackQuery):
@@ -155,7 +157,11 @@ async def string_gen_callbacks(bot: Client, callback_query: CallbackQuery):
     try:
         if query == "generate":
             await callback_query.answer()
-            await callback_query.message.reply(ask_ques, reply_markup=InlineKeyboardMarkup(buttons_ques))
+            # EDIT THE MESSAGE INSTEAD OF REPLYING
+            await callback_query.message.edit_text(
+                ask_ques, 
+                reply_markup=InlineKeyboardMarkup(buttons_ques)
+            )
         elif query == "pyrogram":
             await callback_query.answer()
             await generate_session(bot, callback_query.message)
@@ -172,4 +178,3 @@ async def string_gen_callbacks(bot: Client, callback_query: CallbackQuery):
         print(traceback.format_exc())
         print(e)
         await callback_query.message.reply(ERROR_MESSAGE.format(str(e)))
-        
