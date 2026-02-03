@@ -63,7 +63,7 @@ def main():
         raise SystemExit(1)
 
     except Exception as e:
-        LOGGER.exception(f"❌ Unexpected error: {e}")
+        LOGGER.exception(f"❌ Unexpected error while starting bot: {e}")
         raise SystemExit(1)
 
     # Bot info
@@ -73,19 +73,18 @@ def main():
 
     # Send "I am alive" message to LOGGER_ID
     try:
-        asyncio.get_event_loop().run_until_complete(
-            app.send_message(
-                config.LOGGER_ID,
-                f"**✅ ʙᴏᴛ sᴛᴀʀᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ!**\n\n"
-                f"**ʙᴏᴛ :** @{me.username}\n"
-                f"**ɴᴀᴍᴇ :** {me.first_name}\n"
-                f"**ɪᴅ :** `{me.id}`\n"
-                f"**sᴛᴀᴛᴜs :** ɪ ᴀᴍ ᴀʟɪᴠᴇ 🏴‍☠️"
-            )
+        app.send_message(
+            config.LOGGER_ID,
+            f"**✅ ʙᴏᴛ sᴛᴀʀᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ!**\n\n"
+            f"**ʙᴏᴛ :** @{me.username}\n"
+            f"**ɴᴀᴍᴇ :** {me.first_name}\n"
+            f"**ɪᴅ :** `{me.id}`\n"
+            f"**sᴛᴀᴛᴜs :** ɪ ᴀᴍ ᴀʟɪᴠᴇ 🏴‍☠️"
         )
         LOGGER.info(f"✅ Alive message sent to LOGGER_ID: {config.LOGGER_ID}")
+
     except Exception as e:
-        LOGGER.error(f"❌ Failed to send alive message: {e}")
+        LOGGER.exception("❌ Failed to send alive message")
 
     # Idle (keep alive)
     idle()
