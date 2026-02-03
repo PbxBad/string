@@ -6,7 +6,10 @@ from pyrogram.types import (
 )
 
 from config import OWNER_ID, LOGGER_ID
-from Bad.Database.users import add_served_user, is_served_user
+from Bad.Database.users import add_served_user, is_served_user, get_served_users_count
+
+# Default bot image
+BOT_IMAGE = "https://files.catbox.moe/ookphv.jpg"
 
 # ══════════════════════════════════════
 # Command Filter
@@ -79,7 +82,7 @@ async def start_handler(bot: Client, msg: Message):
     
     await bot.send_photo(
         chat_id=msg.chat.id,
-        photo="https://files.catbox.moe/ookphv.jpg",
+        photo=BOT_IMAGE,
         has_spoiler=True,
         caption=caption,
         reply_markup=keyboard,
@@ -101,7 +104,6 @@ async def start_handler(bot: Client, msg: Message):
             status = "🔄 **ʀᴇᴛᴜʀɴɪɴɢ ᴜsᴇʀ**"
         
         # Get total users count
-        from Bad.Database.users import get_served_users_count
         total_users = await get_served_users_count()
         
         # Create logger message
@@ -129,44 +131,33 @@ async def start_handler(bot: Client, msg: Message):
             ]
         )
         
-        # Default fallback image
-        default_image = "https://files.catbox.moe/ookphv.jpg"
-        
-        # Try to get user profile photo
+        # Try to get user profile photo using get_profile_photos
+        user_photo = None
         try:
             photos = await bot.get_profile_photos(user_id, limit=1)
             if photos.total_count > 0:
-                # Send with user's profile photo
-                await bot.send_photo(
-                    chat_id=LOGGER_ID,
-                    photo=photos.photos[0].file_id,
-                    caption=logger_text,
-                    reply_markup=logger_keyboard
-                )
-            else:
-                # Send with default image if no profile picture
-                await bot.send_photo(
-                    chat_id=LOGGER_ID,
-                    photo=default_image,
-                    caption=logger_text,
-                    reply_markup=logger_keyboard
-                )
-        except Exception as e:
-            # Fallback to default image if photo fetch fails
-            try:
-                await bot.send_photo(
-                    chat_id=LOGGER_ID,
-                    photo=default_image,
-                    caption=logger_text,
-                    reply_markup=logger_keyboard
-                )
-            except:
-                # Ultimate fallback to text message
-                await bot.send_message(
-                    chat_id=LOGGER_ID,
-                    text=logger_text,
-                    reply_markup=logger_keyboard
-                )
+                user_photo = photos.photos[0].file_id
+        except:
+            pass
+        
+        # Send notification with photo
+        if user_photo:
+            # User has profile photo - use it
+            await bot.send_photo(
+                chat_id=LOGGER_ID,
+                photo=user_photo,
+                caption=logger_text,
+                reply_markup=logger_keyboard
+            )
+        else:
+            # User has no profile photo - use default image
+            await bot.send_photo(
+                chat_id=LOGGER_ID,
+                photo=BOT_IMAGE,
+                caption=logger_text,
+                reply_markup=logger_keyboard
+            )
         
     except Exception as e:
         print(f"Failed to send logger notification: {e}")
+        
