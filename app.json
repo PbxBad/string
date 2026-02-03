@@ -27,6 +27,10 @@
       "description": "Telegram user ID of the bot owner",
       "required": true
     },
+    "LOGGER_ID": {
+      "description": "Logger id (-100)",
+      "required": true
+    },
     "MONGO_DB_URI": {
       "description": "MongoDB connection URI",
       "required": true
